@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#357ABD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E5F8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo OACA stylisé basé sur l'image fournie -->
+  <g transform="translate(20, 20)">
+    <!-- Forme principale circulaire -->
+    <circle cx="40" cy="40" r="35" fill="none" stroke="url(#blueGradient)" stroke-width="3"/>
+
+    <!-- Élément central stylisé représentant l'aviation -->
+    <path d="M 25 40 Q 40 25 55 40 Q 40 55 25 40" fill="none" stroke="url(#blueGradient)" stroke-width="2"/>
+    <path d="M 40 25 Q 55 40 40 55 Q 25 40 40 25" fill="none" stroke="url(#blueGradient)" stroke-width="2"/>
+
+    <!-- Lignes horizontales représentant les pistes d'aéroport -->
+    <line x1="85" y1="30" x2="140" y2="30" stroke="url(#blueGradient)" stroke-width="3"/>
+    <line x1="85" y1="40" x2="135" y2="40" stroke="url(#blueGradient)" stroke-width="2"/>
+    <line x1="85" y1="50" x2="130" y2="50" stroke="url(#blueGradient)" stroke-width="2"/>
+
+    <!-- Texte arabe stylisé -->
+    <text x="80" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#2E5F8A" font-weight="bold">
+      ديوان الطيران المدني و المطارات
+    </text>
+
+    <!-- Texte français -->
+    <text x="80" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#4A90E2" font-weight="bold">
+      OFFICE DE L'AVIATION CIVILE ET DES AÉROPORTS
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+{
+    "name": "OACA Agents - Gestion des Agents de Contrôle Aérien",
+    "short_name": "OACA Agents",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#1e3c72",
+    "theme_color": "#1e3c72",
+    "description": "Application de gestion des agents de contrôle aérien pour l'Office de l'Aviation Civile et des Aéroports (OACA) - Tunisie",
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "scope": "/",
+    "lang": "fr",
+    "categories": ["business", "productivity", "utilities"],
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

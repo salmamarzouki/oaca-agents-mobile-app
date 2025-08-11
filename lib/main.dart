@@ -508,7 +508,7 @@ class _AgentsListScreenState extends State<AgentsListScreen> {
 
           // Séparer les agents par source
           final ppaGatAgents = allAgents.where((agent) =>
-            agent.sourceFile.contains('PPA&GAT&PT')).toList();
+            agent.sourceFile.contains('PPA') || agent.sourceFile.contains('GAT') || agent.sourceFile.contains('Passerelle')).toList();
           final naimaAgents = allAgents.where((agent) =>
             agent.sourceFile.contains('naima')).toList();
 

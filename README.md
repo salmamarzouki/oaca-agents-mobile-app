@@ -1,6 +1,28 @@
-# Agents Management System
+# OACA - Gestion des Agents
 
-A full-stack application for managing agent data from Excel files, built with Django backend and Flutter mobile frontend.
+Application de gestion des agents de l'Office de l'Aviation Civile et des Aéroports (OACA) de Tunisie.
+
+## 🚀 Dernières Corrections (14 Août 2025)
+
+### ✅ Correction des codes d'aéroports dans l'application mobile
+
+**Problème résolu :** L'application mobile affichait des codes d'aéroports incorrects et un nombre d'agents erroné.
+
+**Corrections apportées :**
+- ✅ Mise à jour des codes d'aéroports :
+  - `AIDJ` → `AIDZ` (Djerba-Zarzis)
+  - `AIGF` → `AIGK` (Gafsa-Ksar)
+  - `AIMT` → `AITC` (Tunis-Carthage)
+  - `AIOZ` → `AITN` (Tozeur-Nefta)
+  - `AISF` → `AIST` (Sfax-Thyna)
+  - Ajout de `AITAD` (Tabarka-Ain Draham)
+  - Ajout de `AIGM` (Gafsa-Metlaoui)
+
+- ✅ Correction du nombre d'agents : 88 → 97 agents
+- ✅ Reconstruction complète de l'application Flutter avec les bonnes données
+- ✅ Synchronisation avec l'API Django qui fournit les données correctes
+
+**Résultat :** L'application mobile affiche maintenant les mêmes données que l'application PC.
 
 ## 🏗️ Architecture
 
@@ -49,6 +71,17 @@ stage initiation/
 - ✅ Statistics dashboard
 - ✅ Responsive design
 - ✅ Error handling and loading states
+- ✅ Codes d'aéroports corrects (CORRIGÉ ✅)
+
+## Aéroports supportés
+
+- **AITC** - Tunis-Carthage
+- **AIDZ** - Djerba-Zarzis
+- **AIGK** - Gafsa-Ksar
+- **AIGM** - Gafsa-Metlaoui
+- **AIST** - Sfax-Thyna
+- **AITAD** - Tabarka-Ain Draham
+- **AITN** - Tozeur-Nefta
 
 ## 📊 Data Sources
 

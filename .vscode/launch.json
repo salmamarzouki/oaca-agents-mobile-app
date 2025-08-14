@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "agents_mobile_app",
+            "cwd": "agents_mobile_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "agents_mobile_app (profile mode)",
+            "cwd": "agents_mobile_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "agents_mobile_app (release mode)",
+            "cwd": "agents_mobile_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_app",
+            "cwd": "frontend\\flutter_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_app (profile mode)",
+            "cwd": "frontend\\flutter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_app (release mode)",
+            "cwd": "frontend\\flutter_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

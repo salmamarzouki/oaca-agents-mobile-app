@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agents Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .agent-card { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .agent-name { font-weight: bold; color: #1e3c72; }
+        .stats { background: #f5f5f5; padding: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧑‍✈️ Liste des Agents</h1>
+    <div id="stats" class="stats">Chargement des statistiques...</div>
+    <div id="agents">Chargement des agents...</div>
+
+    <script>
+        async function loadAgents() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/mobile-api/agents/');
+                const data = await response.json();
+                
+                // Afficher les statistiques
+                document.getElementById('stats').innerHTML = `
+                    <h3>📊 Statistiques</h3>
+                    <p><strong>Total agents:</strong> ${data.count}</p>
+                `;
+                
+                // Afficher les agents
+                const agentsHtml = data.agents.map(agent => `
+                    <div class="agent-card">
+                        <div class="agent-name">${agent.full_name || agent.nom_complet}</div>
+                        <p><strong>Matricule:</strong> ${agent.matricule}</p>
+                        <p><strong>Affectation:</strong> ${agent.affectation || 'Non spécifiée'}</p>
+                        <p><strong>Source:</strong> ${agent.source_file}</p>
+                        ${agent.periode ? `<p><strong>Période:</strong> ${agent.periode}</p>` : ''}
+                        ${agent.status ? `<p><strong>Status:</strong> ${agent.status}</p>` : ''}
+                    </div>
+                `).join('');
+                
+                document.getElementById('agents').innerHTML = agentsHtml;
+            } catch (error) {
+                document.getElementById('agents').innerHTML = `
+                    <p style="color: red;">Erreur: ${error.message}</p>
+                    <p>Assurez-vous que le serveur Django est démarré sur http://127.0.0.1:8000</p>
+                `;
+            }
+        }
+        
+        loadAgents();
+    </script>
+</body>
+</html>

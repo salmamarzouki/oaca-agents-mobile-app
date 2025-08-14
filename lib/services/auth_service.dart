@@ -26,8 +26,14 @@ class AuthService {
 
   // Vérifier si l'utilisateur est connecté
   static Future<bool> isLoggedIn() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_isLoggedInKey) ?? false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getBool(_isLoggedInKey) ?? false;
+    } catch (e) {
+      print('⚠️ Erreur lors de la vérification de connexion: $e');
+      // En cas d'erreur, considérer comme non connecté
+      return false;
+    }
   }
 
   // Obtenir l'utilisateur actuel
@@ -55,15 +61,23 @@ class AuthService {
     if (_validCredentials.containsKey(email)) {
       final userCredentials = _validCredentials[email]!;
       if (userCredentials['password'] == password) {
-        // Sauvegarder l'état de connexion
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool(_isLoggedInKey, true);
-        await prefs.setString(_userDataKey, email);
-        
-        return true;
+        try {
+          // Sauvegarder l'état de connexion
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool(_isLoggedInKey, true);
+          await prefs.setString(_userDataKey, email);
+
+          print('✅ Connexion réussie pour: $email');
+          return true;
+        } catch (e) {
+          print('⚠️ Erreur SharedPreferences: $e');
+          // Même si SharedPreferences échoue, on peut continuer
+          return true;
+        }
       }
     }
-    
+
+    print('❌ Identifiants incorrects pour: $email');
     return false;
   }
 

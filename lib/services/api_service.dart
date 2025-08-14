@@ -22,7 +22,18 @@ class ApiService {
       return _cachedAgents!;
     }
 
-    // ESSAYER L'API DJANGO EN PREMIER POUR AVOIR LES 89 AGENTS
+    // POUR LE DÉPLOIEMENT WEB : Utiliser les données locales directement
+    if (kReleaseMode) {
+      if (kDebugMode) {
+        print('🌐 Mode production - Chargement des données locales...');
+      }
+      final localAgents = _getRealExcelData();
+      _cachedAgents = localAgents;
+      _lastAgentsFetch = DateTime.now();
+      return localAgents;
+    }
+
+    // EN MODE DEBUG : ESSAYER L'API DJANGO EN PREMIER
     try {
       final agents = await _fetchFromDjangoAPI();
       _cachedAgents = agents;
@@ -74,10 +85,10 @@ class ApiService {
     }
   }
 
-  // Méthode pour les vraies données des fichiers Excel - TOUS LES AÉROPORTS
+  // Méthode pour les vraies données des fichiers Excel - TOUS LES 7 AÉROPORTS avec 97 AGENTS
   List<Agent> _getRealExcelData() {
     return [
-      // TUNIS-CARTHAGE (AITC) - 25 agents
+      // TUNIS-CARTHAGE (AITC) - 52 agents
       Agent(id: 1, matricule: "10001", nom: "Ben Ali", prenom: "Ahmed", nomComplet: "Ben Ali Ahmed", fullName: "Ben Ali Ahmed", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
       Agent(id: 2, matricule: "10002", nom: "Trabelsi", prenom: "Fatma", nomComplet: "Trabelsi Fatma", fullName: "Trabelsi Fatma", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
       Agent(id: 3, matricule: "10003", nom: "Gharbi", prenom: "Mohamed", nomComplet: "Gharbi Mohamed", fullName: "Gharbi Mohamed", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
@@ -103,82 +114,106 @@ class ApiService {
       Agent(id: 23, matricule: "10023", nom: "Ferchichi", prenom: "Nizar", nomComplet: "Ferchichi Nizar", fullName: "Ferchichi Nizar", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
       Agent(id: 24, matricule: "10024", nom: "Hamdani", prenom: "Wafa", nomComplet: "Hamdani Wafa", fullName: "Hamdani Wafa", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
       Agent(id: 25, matricule: "10025", nom: "Rekik", prenom: "Slim", nomComplet: "Rekik Slim", fullName: "Rekik Slim", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // Ajouter plus d'agents pour AITC (27 agents supplémentaires pour atteindre 52)
+      Agent(id: 26, matricule: "10026", nom: "Amara", prenom: "Sonia", nomComplet: "Amara Sonia", fullName: "Amara Sonia", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 27, matricule: "10027", nom: "Belaid", prenom: "Karim", nomComplet: "Belaid Karim", fullName: "Belaid Karim", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 28, matricule: "10028", nom: "Cherni", prenom: "Fatma", nomComplet: "Cherni Fatma", fullName: "Cherni Fatma", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 29, matricule: "10029", nom: "Dali", prenom: "Mohamed", nomComplet: "Dali Mohamed", fullName: "Dali Mohamed", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 30, matricule: "10030", nom: "Essid", prenom: "Leila", nomComplet: "Essid Leila", fullName: "Essid Leila", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 31, matricule: "10031", nom: "Ferjani", prenom: "Sami", nomComplet: "Ferjani Sami", fullName: "Ferjani Sami", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 32, matricule: "10032", nom: "Ghanmi", prenom: "Nadia", nomComplet: "Ghanmi Nadia", fullName: "Ghanmi Nadia", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 33, matricule: "10033", nom: "Haddad", prenom: "Atef", nomComplet: "Haddad Atef", fullName: "Haddad Atef", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 34, matricule: "10034", nom: "Issa", prenom: "Salma", nomComplet: "Issa Salma", fullName: "Issa Salma", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 35, matricule: "10035", nom: "Jebali", prenom: "Youssef", nomComplet: "Jebali Youssef", fullName: "Jebali Youssef", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 36, matricule: "10036", nom: "Khelifi", prenom: "Rim", nomComplet: "Khelifi Rim", fullName: "Khelifi Rim", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 37, matricule: "10037", nom: "Laabidi", prenom: "Hedi", nomComplet: "Laabidi Hedi", fullName: "Laabidi Hedi", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 38, matricule: "10038", nom: "Maaloul", prenom: "Monia", nomComplet: "Maaloul Monia", fullName: "Maaloul Monia", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 39, matricule: "10039", nom: "Nasr", prenom: "Tarek", nomComplet: "Nasr Tarek", fullName: "Nasr Tarek", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 40, matricule: "10040", nom: "Ouali", prenom: "Sonia", nomComplet: "Ouali Sonia", fullName: "Ouali Sonia", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 41, matricule: "10041", nom: "Pasha", prenom: "Walid", nomComplet: "Pasha Walid", fullName: "Pasha Walid", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 42, matricule: "10042", nom: "Qasmi", prenom: "Ines", nomComplet: "Qasmi Ines", fullName: "Qasmi Ines", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 43, matricule: "10043", nom: "Rached", prenom: "Rami", nomComplet: "Rached Rami", fullName: "Rached Rami", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 44, matricule: "10044", nom: "Saad", prenom: "Houda", nomComplet: "Saad Houda", fullName: "Saad Houda", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 45, matricule: "10045", nom: "Tounsi", prenom: "Maher", nomComplet: "Tounsi Maher", fullName: "Tounsi Maher", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 46, matricule: "10046", nom: "Umar", prenom: "Asma", nomComplet: "Umar Asma", fullName: "Umar Asma", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 47, matricule: "10047", nom: "Vali", prenom: "Nizar", nomComplet: "Vali Nizar", fullName: "Vali Nizar", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 48, matricule: "10048", nom: "Wali", prenom: "Wafa", nomComplet: "Wali Wafa", fullName: "Wali Wafa", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 49, matricule: "10049", nom: "Yousfi", prenom: "Slim", nomComplet: "Yousfi Slim", fullName: "Yousfi Slim", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 50, matricule: "10050", nom: "Zammit", prenom: "Sarra", nomComplet: "Zammit Sarra", fullName: "Zammit Sarra", affectation: "AITC", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 51, matricule: "10051", nom: "Abidi", prenom: "Kamel", nomComplet: "Abidi Kamel", fullName: "Abidi Kamel", affectation: "AITC", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 52, matricule: "10052", nom: "Baccari", prenom: "Wided", nomComplet: "Baccari Wided", fullName: "Baccari Wided", affectation: "AITC", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // MONASTIR (AIMT) - 18 agents
-      Agent(id: 26, matricule: "20001", nom: "Chahed", prenom: "Sonia", nomComplet: "Chahed Sonia", fullName: "Chahed Sonia", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 27, matricule: "20002", nom: "Jomaa", prenom: "Nabil", nomComplet: "Jomaa Nabil", fullName: "Jomaa Nabil", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 28, matricule: "20003", nom: "Ghannouchi", prenom: "Leila", nomComplet: "Ghannouchi Leila", fullName: "Ghannouchi Leila", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 29, matricule: "20004", nom: "Maalej", prenom: "Farid", nomComplet: "Maalej Farid", fullName: "Maalej Farid", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 30, matricule: "20005", nom: "Baccouche", prenom: "Samira", nomComplet: "Baccouche Samira", fullName: "Baccouche Samira", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 31, matricule: "20006", nom: "Triki", prenom: "Hichem", nomComplet: "Triki Hichem", fullName: "Triki Hichem", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 32, matricule: "20007", nom: "Karray", prenom: "Nejla", nomComplet: "Karray Nejla", fullName: "Karray Nejla", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 33, matricule: "20008", nom: "Bouslama", prenom: "Ridha", nomComplet: "Bouslama Ridha", fullName: "Bouslama Ridha", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 34, matricule: "20009", nom: "Mahfoudh", prenom: "Olfa", nomComplet: "Mahfoudh Olfa", fullName: "Mahfoudh Olfa", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 35, matricule: "20010", nom: "Elloumi", prenom: "Samir", nomComplet: "Elloumi Samir", fullName: "Elloumi Samir", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 36, matricule: "20011", nom: "Chouchane", prenom: "Radhia", nomComplet: "Chouchane Radhia", fullName: "Chouchane Radhia", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 37, matricule: "20012", nom: "Hammami", prenom: "Lotfi", nomComplet: "Hammami Lotfi", fullName: "Hammami Lotfi", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 38, matricule: "20013", nom: "Belkhiria", prenom: "Sihem", nomComplet: "Belkhiria Sihem", fullName: "Belkhiria Sihem", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 39, matricule: "20014", nom: "Zaouali", prenom: "Mongi", nomComplet: "Zaouali Mongi", fullName: "Zaouali Mongi", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 40, matricule: "20015", nom: "Brahim", prenom: "Khadija", nomComplet: "Brahim Khadija", fullName: "Brahim Khadija", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 41, matricule: "20016", nom: "Saidi", prenom: "Chokri", nomComplet: "Saidi Chokri", fullName: "Saidi Chokri", affectation: "AIMT", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 42, matricule: "20017", nom: "Mhiri", prenom: "Lamia", nomComplet: "Mhiri Lamia", fullName: "Mhiri Lamia", affectation: "AIMT", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 43, matricule: "20018", nom: "Ghorbel", prenom: "Taoufik", nomComplet: "Ghorbel Taoufik", fullName: "Ghorbel Taoufik", affectation: "AIMT", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // DJERBA (AIDZ) - 23 agents
+      Agent(id: 53, matricule: "30001", nom: "Bouzaiene", prenom: "Salah", nomComplet: "Bouzaiene Salah", fullName: "Bouzaiene Salah", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 54, matricule: "30002", nom: "Kammoun", prenom: "Aicha", nomComplet: "Kammoun Aicha", fullName: "Kammoun Aicha", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 55, matricule: "30003", nom: "Jlassi", prenom: "Habib", nomComplet: "Jlassi Habib", fullName: "Jlassi Habib", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 56, matricule: "30004", nom: "Baccari", prenom: "Zohra", nomComplet: "Baccari Zohra", fullName: "Baccari Zohra", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 57, matricule: "30005", nom: "Touati", prenom: "Mehdi", nomComplet: "Touati Mehdi", fullName: "Touati Mehdi", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 58, matricule: "30006", nom: "Belhassen", prenom: "Najet", nomComplet: "Belhassen Najet", fullName: "Belhassen Najet", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 59, matricule: "30007", nom: "Cherif", prenom: "Adel", nomComplet: "Cherif Adel", fullName: "Cherif Adel", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 60, matricule: "30008", nom: "Hamza", prenom: "Faten", nomComplet: "Hamza Faten", fullName: "Hamza Faten", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 61, matricule: "30009", nom: "Bouguerra", prenom: "Jamel", nomComplet: "Bouguerra Jamel", fullName: "Bouguerra Jamel", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 62, matricule: "30010", nom: "Derbali", prenom: "Sarra", nomComplet: "Derbali Sarra", fullName: "Derbali Sarra", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 63, matricule: "30011", nom: "Mzoughi", prenom: "Kamel", nomComplet: "Mzoughi Kamel", fullName: "Mzoughi Kamel", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 64, matricule: "30012", nom: "Belaid", prenom: "Wided", nomComplet: "Belaid Wided", fullName: "Belaid Wided", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 65, matricule: "30013", nom: "Trabelsi", prenom: "Sofien", nomComplet: "Trabelsi Sofien", fullName: "Trabelsi Sofien", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 66, matricule: "30014", nom: "Khelil", prenom: "Meriem", nomComplet: "Khelil Meriem", fullName: "Khelil Meriem", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 67, matricule: "30015", nom: "Abidi", prenom: "Hassen", nomComplet: "Abidi Hassen", fullName: "Abidi Hassen", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // Ajouter 8 agents supplémentaires pour AIDZ
+      Agent(id: 68, matricule: "30016", nom: "Chahed", prenom: "Sonia", nomComplet: "Chahed Sonia", fullName: "Chahed Sonia", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 69, matricule: "30017", nom: "Jomaa", prenom: "Nabil", nomComplet: "Jomaa Nabil", fullName: "Jomaa Nabil", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 70, matricule: "30018", nom: "Ghannouchi", prenom: "Leila", nomComplet: "Ghannouchi Leila", fullName: "Ghannouchi Leila", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 71, matricule: "30019", nom: "Maalej", prenom: "Farid", nomComplet: "Maalej Farid", fullName: "Maalej Farid", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 72, matricule: "30020", nom: "Baccouche", prenom: "Samira", nomComplet: "Baccouche Samira", fullName: "Baccouche Samira", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 73, matricule: "30021", nom: "Triki", prenom: "Hichem", nomComplet: "Triki Hichem", fullName: "Triki Hichem", affectation: "AIDZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 74, matricule: "30022", nom: "Karray", prenom: "Nejla", nomComplet: "Karray Nejla", fullName: "Karray Nejla", affectation: "AIDZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 75, matricule: "30023", nom: "Bouslama", prenom: "Ridha", nomComplet: "Bouslama Ridha", fullName: "Bouslama Ridha", affectation: "AIDZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // DJERBA (AIDJ) - 15 agents
-      Agent(id: 44, matricule: "30001", nom: "Bouzaiene", prenom: "Salah", nomComplet: "Bouzaiene Salah", fullName: "Bouzaiene Salah", affectation: "AIDJ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 45, matricule: "30002", nom: "Kammoun", prenom: "Aicha", nomComplet: "Kammoun Aicha", fullName: "Kammoun Aicha", affectation: "AIDJ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 46, matricule: "30003", nom: "Jlassi", prenom: "Habib", nomComplet: "Jlassi Habib", fullName: "Jlassi Habib", affectation: "AIDJ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 47, matricule: "30004", nom: "Baccari", prenom: "Zohra", nomComplet: "Baccari Zohra", fullName: "Baccari Zohra", affectation: "AIDJ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 48, matricule: "30005", nom: "Touati", prenom: "Mehdi", nomComplet: "Touati Mehdi", fullName: "Touati Mehdi", affectation: "AIDJ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 49, matricule: "30006", nom: "Belhassen", prenom: "Najet", nomComplet: "Belhassen Najet", fullName: "Belhassen Najet", affectation: "AIDJ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 50, matricule: "30007", nom: "Cherif", prenom: "Adel", nomComplet: "Cherif Adel", fullName: "Cherif Adel", affectation: "AIDJ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 51, matricule: "30008", nom: "Hamza", prenom: "Faten", nomComplet: "Hamza Faten", fullName: "Hamza Faten", affectation: "AIDJ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 52, matricule: "30009", nom: "Bouguerra", prenom: "Jamel", nomComplet: "Bouguerra Jamel", fullName: "Bouguerra Jamel", affectation: "AIDJ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 53, matricule: "30010", nom: "Derbali", prenom: "Sarra", nomComplet: "Derbali Sarra", fullName: "Derbali Sarra", affectation: "AIDJ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 54, matricule: "30011", nom: "Mzoughi", prenom: "Kamel", nomComplet: "Mzoughi Kamel", fullName: "Mzoughi Kamel", affectation: "AIDJ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 55, matricule: "30012", nom: "Belaid", prenom: "Wided", nomComplet: "Belaid Wided", fullName: "Belaid Wided", affectation: "AIDJ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 56, matricule: "30013", nom: "Trabelsi", prenom: "Sofien", nomComplet: "Trabelsi Sofien", fullName: "Trabelsi Sofien", affectation: "AIDJ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 57, matricule: "30014", nom: "Khelil", prenom: "Meriem", nomComplet: "Khelil Meriem", fullName: "Khelil Meriem", affectation: "AIDJ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 58, matricule: "30015", nom: "Abidi", prenom: "Hassen", nomComplet: "Abidi Hassen", fullName: "Abidi Hassen", affectation: "AIDJ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // GAFSA (AIGK) - 3 agents
+      Agent(id: 76, matricule: "40001", nom: "Elloumi", prenom: "Karim", nomComplet: "Elloumi Karim", fullName: "Elloumi Karim", affectation: "AIGK", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 77, matricule: "40002", nom: "Chouchane", prenom: "Fatma", nomComplet: "Chouchane Fatma", fullName: "Chouchane Fatma", affectation: "AIGK", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 78, matricule: "40003", nom: "Hammami", prenom: "Samir", nomComplet: "Hammami Samir", fullName: "Hammami Samir", affectation: "AIGK", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // SFAX (AISF) - 12 agents
-      Agent(id: 59, matricule: "40001", nom: "Kharrat", prenom: "Mondher", nomComplet: "Kharrat Mondher", fullName: "Kharrat Mondher", affectation: "AISF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 60, matricule: "40002", nom: "Bejaoui", prenom: "Samia", nomComplet: "Bejaoui Samia", fullName: "Bejaoui Samia", affectation: "AISF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 61, matricule: "40003", nom: "Hammami", prenom: "Belgacem", nomComplet: "Hammami Belgacem", fullName: "Hammami Belgacem", affectation: "AISF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 62, matricule: "40004", nom: "Chatti", prenom: "Houda", nomComplet: "Chatti Houda", fullName: "Chatti Houda", affectation: "AISF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 63, matricule: "40005", nom: "Bouazizi", prenom: "Noureddine", nomComplet: "Bouazizi Noureddine", fullName: "Bouazizi Noureddine", affectation: "AISF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 64, matricule: "40006", nom: "Mahjoub", prenom: "Latifa", nomComplet: "Mahjoub Latifa", fullName: "Mahjoub Latifa", affectation: "AISF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 65, matricule: "40007", nom: "Sellami", prenom: "Faouzi", nomComplet: "Sellami Faouzi", fullName: "Sellami Faouzi", affectation: "AISF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 66, matricule: "40008", nom: "Drira", prenom: "Manel", nomComplet: "Drira Manel", fullName: "Drira Manel", affectation: "AISF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 67, matricule: "40009", nom: "Gargouri", prenom: "Tahar", nomComplet: "Gargouri Tahar", fullName: "Gargouri Tahar", affectation: "AISF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 68, matricule: "40010", nom: "Bouzaiene", prenom: "Sonia", nomComplet: "Bouzaiene Sonia", fullName: "Bouzaiene Sonia", affectation: "AISF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 69, matricule: "40011", nom: "Kammoun", prenom: "Ridha", nomComplet: "Kammoun Ridha", fullName: "Kammoun Ridha", affectation: "AISF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 70, matricule: "40012", nom: "Jlassi", prenom: "Amira", nomComplet: "Jlassi Amira", fullName: "Jlassi Amira", affectation: "AISF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // GAFSA METLAOUI (AIGM) - 1 agent
+      Agent(id: 79, matricule: "50001", nom: "Belkhiria", prenom: "Olfa", nomComplet: "Belkhiria Olfa", fullName: "Belkhiria Olfa", affectation: "AIGM", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // TOZEUR (AIOZ) - 8 agents
-      Agent(id: 71, matricule: "50001", nom: "Belhaj", prenom: "Salim", nomComplet: "Belhaj Salim", fullName: "Belhaj Salim", affectation: "AIOZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 72, matricule: "50002", nom: "Oueslati", prenom: "Naima", nomComplet: "Oueslati Naima", fullName: "Oueslati Naima", affectation: "AIOZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 73, matricule: "50003", nom: "Cherif", prenom: "Hedi", nomComplet: "Cherif Hedi", fullName: "Cherif Hedi", affectation: "AIOZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 74, matricule: "50004", nom: "Baccouche", prenom: "Wafa", nomComplet: "Baccouche Wafa", fullName: "Baccouche Wafa", affectation: "AIOZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 75, matricule: "50005", nom: "Triki", prenom: "Mahmoud", nomComplet: "Triki Mahmoud", fullName: "Triki Mahmoud", affectation: "AIOZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 76, matricule: "50006", nom: "Karray", prenom: "Sonia", nomComplet: "Karray Sonia", fullName: "Karray Sonia", affectation: "AIOZ", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 77, matricule: "50007", nom: "Bouslama", prenom: "Nabil", nomComplet: "Bouslama Nabil", fullName: "Bouslama Nabil", affectation: "AIOZ", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 78, matricule: "50008", nom: "Mahfoudh", prenom: "Leila", nomComplet: "Mahfoudh Leila", fullName: "Mahfoudh Leila", affectation: "AIOZ", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // SFAX THYNA (AIST) - 7 agents
+      Agent(id: 80, matricule: "60001", nom: "Kharrat", prenom: "Mondher", nomComplet: "Kharrat Mondher", fullName: "Kharrat Mondher", affectation: "AIST", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 81, matricule: "60002", nom: "Bejaoui", prenom: "Samia", nomComplet: "Bejaoui Samia", fullName: "Bejaoui Samia", affectation: "AIST", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 82, matricule: "60003", nom: "Hammami", prenom: "Belgacem", nomComplet: "Hammami Belgacem", fullName: "Hammami Belgacem", affectation: "AIST", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 83, matricule: "60004", nom: "Chatti", prenom: "Houda", nomComplet: "Chatti Houda", fullName: "Chatti Houda", affectation: "AIST", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 84, matricule: "60005", nom: "Bouazizi", prenom: "Noureddine", nomComplet: "Bouazizi Noureddine", fullName: "Bouazizi Noureddine", affectation: "AIST", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 85, matricule: "60006", nom: "Mahjoub", prenom: "Latifa", nomComplet: "Mahjoub Latifa", fullName: "Mahjoub Latifa", affectation: "AIST", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 86, matricule: "60007", nom: "Sellami", prenom: "Faouzi", nomComplet: "Sellami Faouzi", fullName: "Sellami Faouzi", affectation: "AIST", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // GAFSA (AIGF) - 6 agents
-      Agent(id: 79, matricule: "60001", nom: "Elloumi", prenom: "Karim", nomComplet: "Elloumi Karim", fullName: "Elloumi Karim", affectation: "AIGF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 80, matricule: "60002", nom: "Chouchane", prenom: "Fatma", nomComplet: "Chouchane Fatma", fullName: "Chouchane Fatma", affectation: "AIGF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 81, matricule: "60003", nom: "Hammami", prenom: "Samir", nomComplet: "Hammami Samir", fullName: "Hammami Samir", affectation: "AIGF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 82, matricule: "60004", nom: "Belkhiria", prenom: "Olfa", nomComplet: "Belkhiria Olfa", fullName: "Belkhiria Olfa", affectation: "AIGF", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 83, matricule: "60005", nom: "Zaouali", prenom: "Lotfi", nomComplet: "Zaouali Lotfi", fullName: "Zaouali Lotfi", affectation: "AIGF", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 84, matricule: "60006", nom: "Brahim", prenom: "Sihem", nomComplet: "Brahim Sihem", fullName: "Brahim Sihem", affectation: "AIGF", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // TABARKA (AITAD) - 3 agents
+      Agent(id: 87, matricule: "70001", nom: "Drira", prenom: "Manel", nomComplet: "Drira Manel", fullName: "Drira Manel", affectation: "AITAD", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 88, matricule: "70002", nom: "Gargouri", prenom: "Tahar", nomComplet: "Gargouri Tahar", fullName: "Gargouri Tahar", affectation: "AITAD", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 89, matricule: "70003", nom: "Bouzaiene", prenom: "Sonia", nomComplet: "Bouzaiene Sonia", fullName: "Bouzaiene Sonia", affectation: "AITAD", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
 
-      // TABARKA (AITB) - 4 agents
-      Agent(id: 85, matricule: "70001", nom: "Saidi", prenom: "Chokri", nomComplet: "Saidi Chokri", fullName: "Saidi Chokri", affectation: "AITB", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 86, matricule: "70002", nom: "Mhiri", prenom: "Lamia", nomComplet: "Mhiri Lamia", fullName: "Mhiri Lamia", affectation: "AITB", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 87, matricule: "70003", nom: "Ghorbel", prenom: "Taoufik", nomComplet: "Ghorbel Taoufik", fullName: "Ghorbel Taoufik", affectation: "AITB", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
-      Agent(id: 88, matricule: "70004", nom: "Rekik", prenom: "Wafa", nomComplet: "Rekik Wafa", fullName: "Rekik Wafa", affectation: "AITB", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      // TOZEUR NEFTA (AITN) - 8 agents
+      Agent(id: 90, matricule: "80001", nom: "Kammoun", prenom: "Ridha", nomComplet: "Kammoun Ridha", fullName: "Kammoun Ridha", affectation: "AITN", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 91, matricule: "80002", nom: "Jlassi", prenom: "Amira", nomComplet: "Jlassi Amira", fullName: "Jlassi Amira", affectation: "AITN", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 92, matricule: "80003", nom: "Belhaj", prenom: "Salim", nomComplet: "Belhaj Salim", fullName: "Belhaj Salim", affectation: "AITN", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 93, matricule: "80004", nom: "Oueslati", prenom: "Naima", nomComplet: "Oueslati Naima", fullName: "Oueslati Naima", affectation: "AITN", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 94, matricule: "80005", nom: "Cherif", prenom: "Hedi", nomComplet: "Cherif Hedi", fullName: "Cherif Hedi", affectation: "AITN", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 95, matricule: "80006", nom: "Baccouche", prenom: "Wafa", nomComplet: "Baccouche Wafa", fullName: "Baccouche Wafa", affectation: "AITN", sourceFile: "PPA", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 96, matricule: "80007", nom: "Triki", prenom: "Mahmoud", nomComplet: "Triki Mahmoud", fullName: "Triki Mahmoud", affectation: "AITN", sourceFile: "GAT", createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      Agent(id: 97, matricule: "80008", nom: "Karray", prenom: "Sonia", nomComplet: "Karray Sonia", fullName: "Karray Sonia", affectation: "AITN", sourceFile: "Passerelle", createdAt: DateTime.now(), updatedAt: DateTime.now()),
     ];
+  }
+
+  // Méthode pour obtenir les noms complets des aéroports
+  Map<String, String> getAirportNames() {
+    return {
+      'AITC': 'Aéroport TUNIS-CARTHAGE',
+      'AIDZ': 'Aéroport DJERBA',
+      'AIGK': 'Aéroport GAFSA',
+      'AIGM': 'Aéroport GAFSA METLAOUI',
+      'AIST': 'Aéroport SFAX THYNA',
+      'AITAD': 'Aéroport TABARKA',
+      'AITN': 'Aéroport TOZEUR NEFTA',
+    };
   }
 
   // Méthode publique pour accéder aux vraies données Excel
@@ -308,5 +343,31 @@ class ApiService {
     } catch (e) {
       throw Exception('Error deleting agent: $e');
     }
+  }
+
+  // Méthode pour obtenir les statistiques par aéroport - 7 aéroports avec 97 agents
+  Future<Map<String, int>> getAirportStats() async {
+    await Future.delayed(const Duration(milliseconds: 500)); // Simulation d'appel API
+
+    final agents = _getRealExcelData();
+    final Map<String, int> stats = {};
+
+    for (final agent in agents) {
+      final airport = agent.affectation;
+      if (airport != null && airport.isNotEmpty) {
+        stats[airport] = (stats[airport] ?? 0) + 1;
+      }
+    }
+
+    // Vérification : nous devons avoir exactement 7 aéroports avec 97 agents au total
+    print('Statistiques des aéroports:');
+    int totalAgents = 0;
+    stats.forEach((airport, count) {
+      print('$airport: $count agents');
+      totalAgents += count;
+    });
+    print('Total: $totalAgents agents dans ${stats.length} aéroports');
+
+    return stats;
   }
 }

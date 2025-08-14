@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 OACA Agents - Guide Accès Public</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .step {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        .warning {
+            background: rgba(255,193,7,0.2);
+            border-left: 5px solid #FFC107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success {
+            background: rgba(76,175,80,0.2);
+            border-left: 5px solid #4CAF50;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .code {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛩️ OACA Agents - Guide Accès Public Mondial</h1>
+        
+        <div class="success">
+            <h2>🎯 Objectif</h2>
+            <p>Rendre votre application OACA Agents accessible depuis <strong>n'importe où dans le monde</strong> via Internet.</p>
+        </div>
+
+        <div class="step">
+            <h3>📋 ÉTAPE 1 : Création du compte ngrok (GRATUIT)</h3>
+            <p>1. Cliquez sur le bouton ci-dessous pour créer un compte gratuit :</p>
+            <a href="https://dashboard.ngrok.com/signup" target="_blank" class="button">🌐 Créer un compte ngrok</a>
+            <p>2. Utilisez votre email pour vous inscrire</p>
+            <p>3. Confirmez votre email si demandé</p>
+            <p>4. Connectez-vous à votre nouveau compte</p>
+        </div>
+
+        <div class="step">
+            <h3>🔑 ÉTAPE 2 : Récupération du token</h3>
+            <p>1. Une fois connecté, cliquez ici pour obtenir votre token :</p>
+            <a href="https://dashboard.ngrok.com/get-started/your-authtoken" target="_blank" class="button">🔑 Obtenir mon token</a>
+            <p>2. Copiez le token qui commence par "2..." (environ 50 caractères)</p>
+            <div class="code">Exemple : 2ABC123def456ghi789jkl012mno345pqr678stu901vwx234yz</div>
+        </div>
+
+        <div class="step">
+            <h3>🚀 ÉTAPE 3 : Lancement automatique</h3>
+            <p>1. Double-cliquez sur le fichier :</p>
+            <div class="code">RENDRE_PUBLIC_AUTOMATIQUE.bat</div>
+            <p>2. Suivez les instructions à l'écran</p>
+            <p>3. Collez votre token quand demandé</p>
+            <p>4. Votre application sera automatiquement accessible publiquement !</p>
+        </div>
+
+        <div class="warning">
+            <h3>⚠️ Important - Sécurité</h3>
+            <p><strong>Une fois public, votre application sera accessible depuis n'importe où !</strong></p>
+            <ul>
+                <li>🔐 Identifiants actuels : <code>admin@oaca.tn</code> / <code>admin123</code></li>
+                <li>🛡️ Changez ces identifiants si nécessaire</li>
+                <li>👥 Partagez l'URL uniquement avec les personnes autorisées</li>
+                <li>📊 Surveillez les accès via le dashboard ngrok</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>🎉 Résultat final</h3>
+            <p>Après configuration, vous obtiendrez une URL comme :</p>
+            <div class="code">https://abc123.ngrok.io</div>
+            <p>Cette URL sera accessible depuis :</p>
+            <ul>
+                <li>🌍 N'importe quel pays</li>
+                <li>📱 Tous les appareils (PC, mobile, tablette)</li>
+                <li>🌐 Tous les navigateurs</li>
+                <li>🔒 Connexion HTTPS sécurisée</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <p><strong>🚀 Prêt à rendre votre application publique ?</strong></p>
+            <p>Double-cliquez sur <code>RENDRE_PUBLIC_AUTOMATIQUE.bat</code></p>
+        </div>
+    </div>
+</body>
+</html>

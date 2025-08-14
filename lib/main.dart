@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/agent_provider.dart';
 import 'services/api_service.dart';
-import 'screens/home_page.dart';
+import 'screens/swipe_home_page.dart';
 import 'screens/login_screen.dart';
 import 'providers/auth_provider.dart';
 import 'models/agent.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         home: const AuthWrapper(),
         routes: {
           '/login': (context) => LoginScreen(),
-          '/home': (context) => const HomePage(),
+          '/home': (context) => const SwipeHomePage(),
         },
       ),
     );
@@ -78,7 +78,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
 
         // Rediriger vers la page appropriée selon l'état d'authentification
         if (authProvider.isLoggedIn) {
-          return const HomePage();
+          return const SwipeHomePage();
         } else {
           return LoginScreen();
         }

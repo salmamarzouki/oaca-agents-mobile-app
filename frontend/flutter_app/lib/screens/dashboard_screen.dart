@@ -68,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             _buildStatCard(
-                              '🏢 89 Agents depuis Excel',
+                              '🏢 97 Agents depuis Excel',
                               '${provider.agents.length}',
                               'Agents',
                             ),
